@@ -37,12 +37,12 @@ api.interceptors.request.use((config) => {
     }
 
     if (import.meta.env.DEV) {
-    console.log('API Request:', {
-        method: config.method,
-        url: config.url,
-        hasAuth: !!config.headers.Authorization,
-        contentType: config.headers['Content-Type']
-    });
+        console.log('API Request:', {
+            method: config.method,
+            url: config.url,
+            hasAuth: !!config.headers.Authorization,
+            contentType: config.headers['Content-Type']
+        });
     }
 
     return config;
@@ -86,13 +86,13 @@ export const documentAPI = {
             formData.append('caseId', metadata.caseId);
         }
 
-        if(import.meta.env.DEV) {
-        console.log('Uploading with FormData:', {
-            file: file.name,
-            category: metadata.category,
-            description: metadata.description
-        });
-    }
+        if (import.meta.env.DEV) {
+            console.log('Uploading with FormData:', {
+                file: file.name,
+                category: metadata.category,
+                description: metadata.description
+            });
+        }
         // CRITICAL: Don't set Content-Type header - let browser set it with boundary
         return api.post('/api/documents/upload', formData);
     },
